@@ -53,9 +53,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             put(COLUMN_DEFECT_COUNT, item.defectCount)
             put(COLUMN_STATUS, item.status)
         }
-        val result = db.insert(TABLE_NAME, null, values)
-        db.close()
-        return result
+        return db.insert(TABLE_NAME, null, values)
     }
 
     // READ
@@ -80,7 +78,6 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             } while (cursor.moveToNext())
         }
         cursor.close()
-        db.close()
         return list
     }
 
@@ -95,16 +92,12 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             put(COLUMN_DEFECT_COUNT, item.defectCount)
             put(COLUMN_STATUS, item.status)
         }
-        val result = db.update(TABLE_NAME, values, "$COLUMN_ID = ?", arrayOf(item.id.toString()))
-        db.close()
-        return result
+        return db.update(TABLE_NAME, values, "$COLUMN_ID = ?", arrayOf(item.id.toString()))
     }
 
     // DELETE
     fun deleteInspection(id: Int): Int {
         val db = this.writableDatabase
-        val result = db.delete(TABLE_NAME, "$COLUMN_ID = ?", arrayOf(id.toString()))
-        db.close()
-        return result
+        return db.delete(TABLE_NAME, "$COLUMN_ID = ?", arrayOf(id.toString()))
     }
 }

@@ -44,3 +44,11 @@ captures/
 # OS-generated files
 .DS_Store
 Thumbs.db
+
+# SQLite Database files
+*.db
+*.db-shm
+*.db-wal
+*.db-journal
+*.sqlite
+*.sqlite3
